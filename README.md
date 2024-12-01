@@ -1,4 +1,4 @@
-## MLOps pipeline for chicken disease classification!
+## MLOps pipeline for disease classification!
 
 ## Workflow
 

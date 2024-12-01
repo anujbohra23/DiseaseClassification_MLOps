@@ -1,1 +1,5 @@
 [2024-11-28 12:30:31,864: INFO: main: hey there, this is custom log]
+[2024-12-01 16:01:03,854: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-12-01 16:01:03,913: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-12-01 16:01:03,926: INFO: common: created directory at: artifacts]
+[2024-12-01 16:01:03,937: INFO: common: created directory at: artifacts/data_ingestion]
