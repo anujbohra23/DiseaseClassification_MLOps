@@ -1,6 +1,9 @@
 from CNN_Classifier.constants import *
 from CNN_Classifier.utils.common import read_yaml, create_directories
-from CNN_Classifier.entity.config_entity import DataIngestionConfig
+from CNN_Classifier.entity.config_entity import (
+    DataIngestionConfig,
+    PrepareBaseModelConfig,
+)
 from src.CNN_Classifier.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
 
 
@@ -28,3 +31,29 @@ class ConfigurationManager:
         )
 
         return data_ingestion_config
+
+    def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
+        config = self.config.get(
+            "prepare_base_model"
+        )  # Access the correct section safely
+        print("Prepare Base Model Config:", config)  # Debugging print
+
+        if config is None:
+            raise ValueError(
+                "prepare_base_model section is missing in the config file."
+            )
+
+        create_directories([config.root_dir])
+
+        prepare_base_model_config = PrepareBaseModelConfig(
+            root_dir=Path(config["root_dir"]),
+            base_model_path=Path(config["base_model_path"]),
+            updated_base_model_path=Path(config["updated_base_model_path"]),
+            params_image_size=self.params.IMAGE_SIZE,
+            params_learning_rate=self.params.LEARNING_RATE,
+            params_include_top=self.params.INCLUDE_TOP,
+            params_weights=self.params.WEIGHTS,
+            params_classes=self.params.CLASSES,
+        )
+
+        return prepare_base_model_config
